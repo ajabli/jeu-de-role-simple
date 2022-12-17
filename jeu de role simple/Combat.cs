@@ -23,18 +23,18 @@ namespace jeu_de_role_simple
 
         public virtual void Attaquer()
         {  // si c'est le Héro qui attaque le Monstre
-            this.Monstre.pointDeVie -= this.Personnage.pointAttaque;
+            this.Monstre.PointDeVie -= this.Personnage.PointAttaque;
          }
 
         public virtual void MonstreAttaquer()
         {
-            this.Personnage.pointDeVie -= this.Monstre.pointAttaque;
+            this.Personnage.PointDeVie -= this.Monstre.PointAttaque;
         }
 
         public virtual void InfoCombat()
         {
-            Console.WriteLine($"Vies du {this.Personnage.nom} : {this.Personnage.pointDeVie}");
-            Console.WriteLine(" Vie du Monstre :"+this.Monstre.pointDeVie);         
+            Console.WriteLine($"Vies du {this.Personnage.Nom} : {this.Personnage.PointDeVie}");
+            Console.WriteLine(" Vie du Monstre :"+this.Monstre.PointDeVie);         
 
 
         }

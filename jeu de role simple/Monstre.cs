@@ -12,12 +12,12 @@ namespace jeu_de_role_simple
 
         public Monstre(string nom) : base(nom)
         {
-            this.nom = nom;
-            pointDeVie = 80;
-            pointAttaque = 7;
-            pointDefense = 8;
-            initiative = 15;
-            equipment = "Marteau";
+            Nom = nom;
+            PointDeVie = 80;
+            PointAttaque = 7;
+            PointDefense = 8;
+            Initiative = 15;
+            Equipment = "Marteau";
 
         }
 

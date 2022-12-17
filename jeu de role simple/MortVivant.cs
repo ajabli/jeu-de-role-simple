@@ -10,12 +10,12 @@ namespace jeu_de_role_simple
     {
         public MortVivant(string nom) : base(nom)
         {
-            this.nom = nom;
-            pointDeVie = 100;
-            pointAttaque = 5;
-            pointDefense = 1;
-            initiative = 15;
-            equipment = "Couteau";
+            this.Nom = nom;
+            PointDeVie = 100;
+            PointAttaque = 5;
+            PointDefense = 1;
+            Initiative = 15;
+            Equipment = "Couteau";
         }
     }
 

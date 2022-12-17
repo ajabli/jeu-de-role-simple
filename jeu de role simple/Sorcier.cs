@@ -10,12 +10,12 @@ namespace jeu_de_role_simple
     {
         public Sorcier(string nom) : base(nom)
         {
-            this.nom = nom;
-            pointDeVie = 45;
-            pointAttaque = 10;
-            pointDefense = 3;
-            initiative = 15;
-            equipment = "Baguette Magique";
+            this.Nom = nom;
+            PointDeVie = 45;
+            PointAttaque = 10;
+            PointDefense = 3;
+            Initiative = 15;
+            Equipment = "Baguette Magique";
            
         }
     }

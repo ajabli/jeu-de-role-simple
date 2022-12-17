@@ -9,7 +9,7 @@ namespace jeu_de_role_simple
 {
     public abstract class Personnage
     {
-        public string Nom { get; set; }// majuscule pour prop!!!!!
+        public string Nom { get; set; }
         public int PointDeVie { get; set; }
         public int PointAttaque { get; set; }
         public int PointDefense { get; set; }
@@ -25,13 +25,13 @@ namespace jeu_de_role_simple
         public Personnage(string nom)
         {
             this.Nom = nom;
-            this.MonEquipment = new List<string>(); 
+            this.MonEquipment = new List<string>();
+            this.MonEquipment.Add(this.Equipment);
         }
 
         public virtual void AjouterEquipment(string arme)
         {
-            //List<string> MonEquipment = new List<string>() { this.equipment };
-
+           
             this.MonEquipment.Add(arme);
             Console.WriteLine("Liste de vos Armes après récupération :");
             foreach(string chose in this.MonEquipment)

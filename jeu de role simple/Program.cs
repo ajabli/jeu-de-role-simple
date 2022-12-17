@@ -56,9 +56,12 @@ namespace jeu_de_role_simple
 
         private static void Main(string[] args)
         {
+            Console.WriteLine("hhhh");
+
             // Chargement des Heros et du Monstre                                
             Monstre mo = new Monstre("Dragon");
             Personnage p = SelectionPersonnage();
+            /*
             Jouer(p);
             //TO DO MENU : start Game+selectionPersonnage qui serz dans Combat
             Jouer(mo);
@@ -66,6 +69,7 @@ namespace jeu_de_role_simple
             // de commencer            
             Combat n1 = new Combat(p, mo);
             int count = 10;
+            
             while (count>0 & n1.Personnage.PointDeVie>=0)
             {  
                 Console.WriteLine($"Tu as choisi {p.Nom} comme Héro ");   
@@ -87,12 +91,13 @@ namespace jeu_de_role_simple
                 //n1.Encours = false;// propriété qui stoppera le combat > prevoir un check avec les vies
             }
             p.AjouterEquipment(mo.Equipment);
+            */
             // prendre l'arme du Monstre si je gagne
             //string ArmeGagnée = mo.equipment;                   
             Console.WriteLine();
                 // To DO fonction qui fait commencer le Hero qui sera le joueur principale pour toutes les arenes
                // Mettre le personnage choisi dans la boucle pour combattre son premier combat                                           
-            Console.WriteLine("_______________________________________");
+            Console.WriteLine("_____rrrrrrrrrrrrrr________________________");
            
         }        }
    

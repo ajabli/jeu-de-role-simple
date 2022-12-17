@@ -11,12 +11,12 @@ namespace jeu_de_role_simple
 
         public Chevalier(string nom) : base(nom)
         {
-            this.nom = nom;
-            pointDeVie = 80;
-            pointAttaque = 7;
-            pointDefense = 8;
-            initiative = 15;
-            equipment = "epee";// ajouter equipement dans la fonction 
+            this.Nom = nom;
+            PointDeVie = 80;
+            PointAttaque = 7;
+            PointDefense = 8;
+            Initiative = 15;
+            Equipment = "epee";// ajouter equipement dans la fonction 
             
         }
         public override void Afficher()
