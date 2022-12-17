@@ -16,7 +16,7 @@ namespace jeu_de_role_simple
             pointAttaque = 7;
             pointDefense = 8;
             initiative = 15;
-            equipment = "epee";
+            equipment = "epee";// ajouter equipement dans la fonction 
             
         }
         public override void Afficher()

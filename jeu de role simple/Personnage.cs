@@ -9,30 +9,32 @@ namespace jeu_de_role_simple
 {
     public abstract class Personnage
     {
-        public string nom { get; set; }
+        public string nom { get; set; }// majuscule pour prop!!!!!
         public int pointDeVie { get; set; }
         public int pointAttaque { get; set; }
         public int pointDefense { get; set; }
-   
+
         public int initiative { get; set; }
+
         public string equipment { get; set; }
 
         public List<string> MonEquipment = new List<string>();
+       
 
 
         public Personnage(string nom)
         {
             this.nom = nom;
-            //Equipment = new List equipment <string>();
+            this.MonEquipment = new List<string>(); 
         }
 
         public virtual void AjouterEquipment(string arme)
         {
-            List<string> MonEquipment = new List<string>() { this.equipment };
-           
-            MonEquipment.Add(arme);
+            //List<string> MonEquipment = new List<string>() { this.equipment };
+
+            this.MonEquipment.Add(arme);
             Console.WriteLine("Liste de vos Armes après récupération :");
-            foreach(string chose in MonEquipment)
+            foreach(string chose in this.MonEquipment)
             {
                 Console.WriteLine("--"+chose);
             }
@@ -40,12 +42,10 @@ namespace jeu_de_role_simple
 
         public virtual void ChangerEquipment()
         {
-            List<string> MonEquipment = new List<string>() { this.equipment };
-
-            Console.WriteLine("Quelle Arme souhaitez vous recuperer pour le prochain combat");
-            for(int i=0; i<MonEquipment.Count(); i++)
+                       Console.WriteLine("Quelle Arme souhaitez vous recuperer pour le prochain combat");
+            for(int i=0; i<this.MonEquipment.Count(); i++)
             {
-                Console.WriteLine($"{i+1} : {MonEquipment[i]}");
+                Console.WriteLine($"{i+1} : {this.MonEquipment[i]}");
             }
             int choix = int.Parse(Console.ReadLine());
             Console.WriteLine("Votre choix ", MonEquipment[choix-1]);

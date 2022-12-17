@@ -67,16 +67,13 @@ namespace jeu_de_role_simple
             // de commencer            
             Combat n1 = new Combat(p, mo);
             
-            Combat n2 = new Combat(p, mo);// je teste une evntuelle automatisation pour geerer plusieurs combats
-
-            int count = 10;
+             int count = 10;
             // boucle pour boucler sur les 9 combats (tant que?)
             while (count>0 & n1.Encours)
             {  
-                Console.WriteLine("Combats du Chevalier ");                
+                Console.WriteLine($"Tu as choisi {p.nom} comme Héro ");                
                 n1.Attaquer();// Hero attaque monstre seulment > continuer la fonction
                 n1.InfoCombat();
-                //prevoir affichage visuel
                 Console.WriteLine();
                 Console.ForegroundColor = ConsoleColor.DarkRed;
                 Console.WriteLine(" Le Monstre t'attaque et bien dans tes Dents!!!!!!!!!!!");
@@ -88,16 +85,15 @@ namespace jeu_de_role_simple
                 Console.WriteLine($"Attaque numero {count-9} : Appuie sur ENTER pour le suivant!!");
                 Console.ReadKey();
                 Console.Clear();
-
+                // test des armes
+                Console.WriteLine(" Testons les armes ajouts et listing ");
                 count--;
                 //n1.Encours = false;// propriété qui stoppera le combat > prevoir un check avec les vies
-            }           
+            }
+            p.AjouterEquipment(mo.equipment);
 
             // prendre l'arme du Monstre si je gagne
-            string ArmeGagnée = mo.equipment;
-            p.AjouterEquipment(ArmeGagnée);
-            p.AjouterEquipment(ArmeGagnée);
-          
+            //string ArmeGagnée = mo.equipment;                   
             Console.WriteLine();
 
 
