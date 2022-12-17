@@ -14,7 +14,7 @@ namespace jeu_de_role_simple
             personnage.Afficher();
         }
 
-        public static string SelectionPersonnage()
+        public static Personnage SelectionPersonnage()
         {
             Console.WriteLine("choisi ton personnage : \n" +
                "Appuye 1 pour le chevalier\n" +
@@ -27,18 +27,20 @@ namespace jeu_de_role_simple
                     int choix = int.Parse(Console.ReadLine());
                     if (choix == 1)
                     {
-                        return "a";// choix du chevalier
-                        break;
+                        Chevalier a = new Chevalier("Chevalier Lancelot");
+                        return a;// choix du chevalier
+                       
                     }
                     if (choix == 2)
                     {
-                        return "b";// choix soircier
-                        break;
+                        Sorcier s = new Sorcier("Roi Merlin");
+                        return s;// choix sorcier                       
                     }
                     if (choix == 3)
                     {
-                        return "c";
-                        break;
+                        MortVivant m = new MortVivant("Zombiz");
+                        return m;
+                        //break;
                     }
                     else
                     {
@@ -55,25 +57,17 @@ namespace jeu_de_role_simple
         private static void Main(string[] args)
         {
             // Chargement des Heros et du Monstre 
-            Chevalier a = new Chevalier("Chevalier Lancelot");
-            
-            Sorcier s = new Sorcier("Roi Merlin");
-            MortVivant m = new MortVivant("Zombiz");
+                               
             Monstre mo = new Monstre("Dragon");
-            Jouer(a);
-            Jouer(s);
-            Jouer(m);
+            Personnage p = SelectionPersonnage();
+            Jouer(p);
+            //TO DO MENU : start Game+selectionPersonnage qui serz dans Combat
             Jouer(mo);
             // Creer une fonction qui explique le combat et donne les infos principales avant 
-            // de commencer
-
-            // TO do inclure la fonction selectionPersonnage -> qui joue?
-            object o =SelectionPersonnage();
-
-            Combat n1 = new Combat(a, mo);
+            // de commencer            
+            Combat n1 = new Combat(p, mo);
             
-            Combat n2 = new Combat(a, mo);// je teste une evntuelle automatisation pour geerer plusieurs combats
-
+            Combat n2 = new Combat(p, mo);// je teste une evntuelle automatisation pour geerer plusieurs combats
 
             int count = 10;
             // boucle pour boucler sur les 9 combats (tant que?)
@@ -97,21 +91,19 @@ namespace jeu_de_role_simple
 
                 count--;
                 //n1.Encours = false;// propriété qui stoppera le combat > prevoir un check avec les vies
-            }
-           
+            }           
 
             // prendre l'arme du Monstre si je gagne
             string ArmeGagnée = mo.equipment;
-            a.AjouterEquipment(ArmeGagnée);
-            s.AjouterEquipment(ArmeGagnée);
-            //a.MOntrerEquipment();
+            p.AjouterEquipment(ArmeGagnée);
+            p.AjouterEquipment(ArmeGagnée);
+          
             Console.WriteLine();
 
 
-            string choix = SelectionPersonnage();
-            // To DO fonction qui fait commencer le Hero qui sera le joueur principale pour toutes les arenes
+           // To DO fonction qui fait commencer le Hero qui sera le joueur principale pour toutes les arenes
             // While() -> 9 parties
-            Console.WriteLine("Ton choix est :" + choix);
+            Console.WriteLine("Ton choix est :" + p.nom);
 
             // Mettre le personnage choisi dans la boucle pour combattre son premier combat                                           
             Console.WriteLine("_______________________________________");
