@@ -9,7 +9,7 @@ namespace jeu_de_role_simple
         static void Jouer(Personnage personnage)
         {
             Console.ForegroundColor= ConsoleColor.Yellow;
-            Console.WriteLine("> "+personnage.nom +" <");
+            Console.WriteLine("> "+personnage.Nom +" <");
             Console.ForegroundColor= ConsoleColor.White;
             personnage.Afficher();
         }
@@ -56,8 +56,7 @@ namespace jeu_de_role_simple
 
         private static void Main(string[] args)
         {
-            // Chargement des Heros et du Monstre 
-                               
+            // Chargement des Heros et du Monstre                                
             Monstre mo = new Monstre("Dragon");
             Personnage p = SelectionPersonnage();
             Jouer(p);
@@ -66,12 +65,11 @@ namespace jeu_de_role_simple
             // Creer une fonction qui explique le combat et donne les infos principales avant 
             // de commencer            
             Combat n1 = new Combat(p, mo);
-            
-             int count = 10;
-            // boucle pour boucler sur les 9 combats (tant que?)
-            while (count>0 & n1.Encours)
+            int count = 10;
+            while (count>0 & n1.Personnage.PointDeVie>=0)
             {  
-                Console.WriteLine($"Tu as choisi {p.nom} comme Héro ");                
+                Console.WriteLine($"Tu as choisi {p.Nom} comme Héro ");   
+                Console.WriteLine($"Attaque numero {9-count+1} : Appuie sur ENTER pour le suivant!!");
                 n1.Attaquer();// Hero attaque monstre seulment > continuer la fonction
                 n1.InfoCombat();
                 Console.WriteLine();
@@ -79,10 +77,8 @@ namespace jeu_de_role_simple
                 Console.WriteLine(" Le Monstre t'attaque et bien dans tes Dents!!!!!!!!!!!");
                 Console.ForegroundColor = ConsoleColor.White;
                 n1.MonstreAttaquer(); // Monstre attaque
-                n1.InfoCombat();
-               
+                n1.InfoCombat();               
                 Console.WriteLine("");
-                Console.WriteLine($"Attaque numero {count-9} : Appuie sur ENTER pour le suivant!!");
                 Console.ReadKey();
                 Console.Clear();
                 // test des armes
@@ -90,18 +86,12 @@ namespace jeu_de_role_simple
                 count--;
                 //n1.Encours = false;// propriété qui stoppera le combat > prevoir un check avec les vies
             }
-            p.AjouterEquipment(mo.equipment);
-
+            p.AjouterEquipment(mo.Equipment);
             // prendre l'arme du Monstre si je gagne
             //string ArmeGagnée = mo.equipment;                   
             Console.WriteLine();
-
-
-           // To DO fonction qui fait commencer le Hero qui sera le joueur principale pour toutes les arenes
-            // While() -> 9 parties
-            Console.WriteLine("Ton choix est :" + p.nom);
-
-            // Mettre le personnage choisi dans la boucle pour combattre son premier combat                                           
+                // To DO fonction qui fait commencer le Hero qui sera le joueur principale pour toutes les arenes
+               // Mettre le personnage choisi dans la boucle pour combattre son premier combat                                           
             Console.WriteLine("_______________________________________");
            
         }        }

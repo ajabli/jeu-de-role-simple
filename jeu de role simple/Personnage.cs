@@ -9,14 +9,14 @@ namespace jeu_de_role_simple
 {
     public abstract class Personnage
     {
-        public string nom { get; set; }// majuscule pour prop!!!!!
-        public int pointDeVie { get; set; }
-        public int pointAttaque { get; set; }
-        public int pointDefense { get; set; }
+        public string Nom { get; set; }// majuscule pour prop!!!!!
+        public int PointDeVie { get; set; }
+        public int PointAttaque { get; set; }
+        public int PointDefense { get; set; }
 
-        public int initiative { get; set; }
+        public int Initiative { get; set; }
 
-        public string equipment { get; set; }
+        public string Equipment { get; set; }
 
         public List<string> MonEquipment = new List<string>();
        
@@ -24,7 +24,7 @@ namespace jeu_de_role_simple
 
         public Personnage(string nom)
         {
-            this.nom = nom;
+            this.Nom = nom;
             this.MonEquipment = new List<string>(); 
         }
 
@@ -72,10 +72,10 @@ namespace jeu_de_role_simple
 
         public virtual void Afficher()
         {
-            Console.WriteLine("Point de vie : " + pointDeVie);
-            Console.WriteLine("Point d'attaque : " + pointAttaque);
-            Console.WriteLine("Point de defence : " + pointDefense);
-            Console.WriteLine("Son Arme : " + equipment);
+            Console.WriteLine("Point de vie : " + PointDeVie);
+            Console.WriteLine("Point d'attaque : " + PointAttaque);
+            Console.WriteLine("Point de defence : " + PointDefense);
+            Console.WriteLine("Son Arme : " + Equipment);
             Console.WriteLine();
         }
 
