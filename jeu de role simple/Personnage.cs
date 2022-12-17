@@ -10,6 +10,7 @@ namespace jeu_de_role_simple
     public abstract class Personnage
     {
         public string _Nom { get; set; }
+        // coucou new test
         public int PointDeVie { get; set; }
         public int PointAttaque { get; set; }
         public int PointDefense { get; set; }
