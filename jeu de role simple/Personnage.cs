@@ -9,7 +9,7 @@ namespace jeu_de_role_simple
 {
     public abstract class Personnage
     {
-        public string Nom { get; set; }
+        public string _Nom { get; set; }
         public int PointDeVie { get; set; }
         public int PointAttaque { get; set; }
         public int PointDefense { get; set; }
