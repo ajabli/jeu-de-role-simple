@@ -26,10 +26,6 @@ namespace jeu_de_role_simple
 
         }
 
-        public override void AjouterEquipment(string arme)
-        {
-            base.AjouterEquipment(arme);
-        }
 
     }
 }

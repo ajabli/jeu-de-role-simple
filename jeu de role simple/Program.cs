@@ -2,103 +2,151 @@
 using System;
 using System.Linq;
 
+
 namespace jeu_de_role_simple
 {
     class Program
     {
-        static void Jouer(Personnage personnage)
+        static void Presenter(Personnage personnage1, Personnage personnage2 )
         {
-            Console.ForegroundColor= ConsoleColor.Yellow;
-            Console.WriteLine("> "+personnage.Nom +" <");
-            Console.ForegroundColor= ConsoleColor.White;
-            personnage.Afficher();
+            List<string> list = new List<string>();
+            list.Add( personnage1.Nom);
+            list.Add( personnage2.Nom);
+            Console.ForegroundColor = ConsoleColor.Yellow;
+            Console.WriteLine("**************************INFO du Combat ******************************");
+            Console.WriteLine(list[0]+"  (TOI)         VS      "+list[1].ToString()+ "     (Adversaire)");
+            Console.WriteLine("");
+            Console.WriteLine(list[1].ToString()+ "   est Dangereux regarde sa fiche avant de le combattre" );
+            Console.WriteLine("");
+            Console.ForegroundColor = ConsoleColor.White;
+            personnage2.Afficher();
         }
 
-        public static Personnage SelectionPersonnage()
+
+        public static Monstre ChargementMonstre( )
         {
-            Console.WriteLine("choisi ton personnage : \n" +
-               "Appuye 1 pour le chevalier\n" +
-               "Appuye 2 pour le sorcier\n" +
-               "Appuye 3 pour le mort vivant ");
-            while (true)
+            Random ran = new Random();
+            int alea = ran.Next(1, 9); // TO DO : eviter la repetition 
+
+            switch (alea)
             {
-                try
-                {
-                    int choix = int.Parse(Console.ReadLine());
-                    if (choix == 1)
-                    {
-                        Chevalier a = new Chevalier("Chevalier Lancelot");
-                        return a;// choix du chevalier
-                       
-                    }
-                    if (choix == 2)
-                    {
-                        Sorcier s = new Sorcier("Roi Merlin");
-                        return s;// choix sorcier                       
-                    }
-                    if (choix == 3)
-                    {
-                        MortVivant m = new MortVivant("Zombiz");
-                        return m;
-                        //break;
-                    }
-                    else
-                    {
-                        Console.WriteLine("tu n'as pas mis un bon chiffre");
-                    }
-                }
-                catch
-                {
-                    Console.WriteLine("on a dit un chiffre");
-                }
+                case 1:
+                    Monstre a = new Monstre("Dinosaure");// rajouter de deleter le choix a
+                    return a;
+                case 2:
+                    Monstre b = new Monstre("Dinosaure2");
+                    return b;
+                case 3:
+                    Monstre c = new Monstre("Dinosaure3");
+                    return c;
+                case 4:
+                    Monstre d = new Monstre("Dinosaure4");
+                    return d;
+                case 5:
+                    Monstre e = new Monstre("Dinosaure4");
+                    return e;
+                case 6:
+                    Monstre f = new Monstre("Dinosaure5");
+                    return f;
+                case 7:
+                    Monstre g = new Monstre("Dinosaure6");
+                    return g;
+                case 8:
+                    Monstre h = new Monstre("Dinosaure7");
+                    return h;
+                default:
+                    return null;
+                    
+
             }
         }
+
 
         private static void Main(string[] args)
         {
-            Console.WriteLine("hhhh");
+            Console.WriteLine("aaaaaaaaoooiipppppeeeeiiuu");
+            // Chargement des Heros et du Monstre + creation et chargement arme initiale Hero 
+            List<string> listHero = new List<string>();
+            Modele modele = new Modele();
+            Personnage hero = modele.SelectionPersonnage();// selection de ton héro 
+            listHero.Add(hero.Equipment);
+            Console.WriteLine("arme du monstre " + hero.Equipment);
+            Console.WriteLine("Liste arme au debut du jeu :");
+            foreach (string s in listHero)
+            {
+                Console.WriteLine(s);
+            }
 
-            // Chargement des Heros et du Monstre                                
-            Monstre mo = new Monstre("Dragon");
-            Personnage p = SelectionPersonnage();
-            /*
-            Jouer(p);
-            //TO DO MENU : start Game+selectionPersonnage qui serz dans Combat
-            Jouer(mo);
+
+            
             // Creer une fonction qui explique le combat et donne les infos principales avant 
             // de commencer            
-            Combat n1 = new Combat(p, mo);
-            int count = 10;
-            
-            while (count>0 & n1.Personnage.PointDeVie>=0)
-            {  
-                Console.WriteLine($"Tu as choisi {p.Nom} comme Héro ");   
-                Console.WriteLine($"Attaque numero {9-count+1} : Appuie sur ENTER pour le suivant!!");
-                n1.Attaquer();// Hero attaque monstre seulment > continuer la fonction
-                n1.InfoCombat();
-                Console.WriteLine();
-                Console.ForegroundColor = ConsoleColor.DarkRed;
-                Console.WriteLine(" Le Monstre t'attaque et bien dans tes Dents!!!!!!!!!!!");
-                Console.ForegroundColor = ConsoleColor.White;
-                n1.MonstreAttaquer(); // Monstre attaque
-                n1.InfoCombat();               
-                Console.WriteLine("");
+            ///Combat n1 = new Combat(p, mo);
+            //Array array1 = new Array()["n1"; "n2"];
+            //Combat n2 = new Combat(p, mo);
+            Console.WriteLine("testons les combats  ,,,,,,");            
+            int compteur = 9;
+            while (compteur > 0)
+            {
+                Console.WriteLine($"     ____________Combat numero {compteur}_______________");
+                Monstre mon = ChargementMonstre();// chargement du Monstre par fonction aléa
+                Presenter(hero, mon);
+                Console.WriteLine(mon.Nom);
+                Combat a = new Combat(hero, mon);
+                //a.Encours = true;
+                while (a.Encours==true)
+                {
+                    Console.WriteLine("");
+                    if ((a.Encours = a.VerifierGagnant()) == false)
+                        break;// verifie qui gagne la partie après attaque du Monstre
+                    a.Attaquer();// Hero attaque monstre 
+                    if ((a.Encours = a.VerifierGagnant()) == false)
+                        break;// verifie qui gagne la partie
+                    a.InfoCombat();
+                    Console.WriteLine();
+                    Console.ForegroundColor = ConsoleColor.DarkRed;
+                    Console.WriteLine(" Le Monstre t'attaque maintenant !!!!!!!!!!");
+                    Console.ForegroundColor = ConsoleColor.White;
+                    a.MonstreAttaquer(); // Monstre attaque
+
+                    a.InfoCombat();
+                    Console.WriteLine(" Appiuie sur n'importe quelle touche pour continuer COMBAT");
+                    Console.ReadKey();
+                    Console.Clear();
+                }
+                Console.WriteLine("point de vie hero,"+hero.PointDeVie);
+                Console.WriteLine("point de vie Monstre," + mon.PointDeVie);
                 Console.ReadKey();
-                Console.Clear();
-                // test des armes
-                Console.WriteLine(" Testons les armes ajouts et listing ");
-                count--;
-                //n1.Encours = false;// propriété qui stoppera le combat > prevoir un check avec les vies
+
+                // TO do recuperer les infos stats du combat X (gagné perdu) + recuperer l'arme
+                // si le monstre gaggne; la partie est finie-> voulez vous rejpuer ou quitter le jeu
+                //si hero, on continue la partie, (+ point du Monstre que je cumule ) + recuper les armes + affichage de la liste 
+
+                compteur--;
+             Console.WriteLine($" hors boucle   :{compteur} ");
+             Console.WriteLine();
+
+
             }
-            p.AjouterEquipment(mo.Equipment);
-            */
-            // prendre l'arme du Monstre si je gagne
-            //string ArmeGagnée = mo.equipment;                   
-            Console.WriteLine();
-                // To DO fonction qui fait commencer le Hero qui sera le joueur principale pour toutes les arenes
-               // Mettre le personnage choisi dans la boucle pour combattre son premier combat                                           
-            Console.WriteLine("_____rrrrrrrrrrrrrr________________________");
-           
-        }        }
-   
+
+
+
+            /*  
+               Console.WriteLine($"Combat nr {10 - count + 1} : Appuie sur ENTER pour le suivant!!");
+                listHero.Add(mo.Equipment);
+               Console.WriteLine("Combat numero 1 fini ");
+               foreach (string s in listHero)
+               {
+                   Console.WriteLine(s);
+               }
+               Console.WriteLine();
+               // To DO fonction qui fait commencer le Hero qui sera le joueur principale pour toutes les arenes
+
+               Console.WriteLine("_____________________________________________");
+           }
+          */
+
+        }
+
     }
+}

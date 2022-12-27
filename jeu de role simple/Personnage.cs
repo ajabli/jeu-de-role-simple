@@ -9,8 +9,7 @@ namespace jeu_de_role_simple
 {
     public abstract class Personnage
     {
-        public string _Nom { get; set; }
-        // coucou new test
+        public string Nom { get; set; }
         public int PointDeVie { get; set; }
         public int PointAttaque { get; set; }
         public int PointDefense { get; set; }
@@ -26,50 +25,60 @@ namespace jeu_de_role_simple
         public Personnage(string nom)
         {
             this.Nom = nom;
-            this.MonEquipment = new List<string>();
+            this.Equipment = Equipment;     
             this.MonEquipment.Add(this.Equipment);
         }
 
-        public virtual void AjouterEquipment(string arme)
+        public  void AjoutEquipment(List<string>MonEquipment, string arme)
         {
-           
-            this.MonEquipment.Add(arme);
-            Console.WriteLine("Liste de vos Armes après récupération :");
-            foreach(string chose in this.MonEquipment)
-            {
-                Console.WriteLine("--"+chose);
-            }
+            
+            MonEquipment.Add(arme);
         }
+     
 
         public virtual void ChangerEquipment()
         {
                        Console.WriteLine("Quelle Arme souhaitez vous recuperer pour le prochain combat");
             for(int i=0; i<this.MonEquipment.Count(); i++)
             {
-                Console.WriteLine($"{i+1} : {this.MonEquipment[i]}");
+                Console.WriteLine($"{i} : {this.MonEquipment[i]}");
             }
             int choix = int.Parse(Console.ReadLine());
             Console.WriteLine("Votre choix ", MonEquipment[choix-1]);
         }
 
-        /*
-        public virtual void MOntrerEquipment()
+
+
+        public virtual void AfficherEquipment()
         {
-            //List<string> MonEquipment = new List<string>() { this.equipment };
+            
+            int count = 28;
+            for (int i = 0; i < count; i++)
+                Console.Write("*");
 
-            Console.WriteLine("Quelle Arme souhaitez vous recuperer pour le prochain combat ? :");
-            for (int i = 0; i < Monequipment.Count(); i++)
+            Console.WriteLine();
+
+            for (int i = 0; i < (count / 4); i++)
             {
-                Console.WriteLine($"{i + 1} : {Monequipment}");
+                if (i == 0)
+                {
+                    Console.WriteLine("* VOICI TES ARMES :        *");
+                }
+                Console.WriteLine($"*                          *");
+                if (i == 2)
+                {
+                    Console.WriteLine($"*{this.Nom}:  {this.Equipment}     ");
+                    Console.WriteLine($"*{this.Nom}:  {this.Nom}     ");
+                    Console.WriteLine($"*{this.Nom}:  {this.Nom}      ");
+                    Console.WriteLine($"*{this.Nom}: {this.Nom}      ");
+                }
             }
-            int choix = int.Parse(Console.ReadLine());
-            Console.WriteLine("Votre choix ", this.equipment[choix - 1]);
+            for (int i = 0; i < count; i++)
+                Console.Write("*");
         }
-        */
 
+        
 
-        //Fonction qui permet d'attaquer adversaire et faire perdre point de vie
-       
 
         public virtual void Afficher()
         {

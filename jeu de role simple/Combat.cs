@@ -34,11 +34,27 @@ namespace jeu_de_role_simple
         public virtual void InfoCombat()
         {
             Console.WriteLine($"Vies du {this.Personnage.Nom} : {this.Personnage.PointDeVie}");
-            Console.WriteLine(" Vie du Monstre :"+this.Monstre.PointDeVie);         
-
-
+            Console.WriteLine(" Vie du Monstre :"+this.Monstre.PointDeVie);  
         }
-       
+
+        public virtual bool VerifierGagnant()
+        {
+            bool condition = false;
+            if((this.Personnage.PointDeVie > this.Monstre.PointDeVie)&&(this.Monstre.PointDeVie <= 0))
+            {
+                return condition;
+            }
+               
+
+            if(( this.Monstre.PointDeVie >this.Personnage.PointDeVie)&& (this.Personnage.PointDeVie <= 0))
+            {
+                return condition;
+            }
+            condition= true;
+            return condition;
+            
+        }
+
 
 
 
