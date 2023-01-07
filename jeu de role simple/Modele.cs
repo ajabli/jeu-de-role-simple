@@ -48,11 +48,17 @@ namespace jeu_de_role_simple
             }
         }
 
-
-
-
-
-
+    public void EcrireRalenti(string phrase)
+     {
+            
+            foreach (var character in phrase)
+            {
+                Console.Write(character);
+                Thread.Sleep(60);
+            }
+            Console.WriteLine();
+            Console.ReadLine();
+     }
 
 
 

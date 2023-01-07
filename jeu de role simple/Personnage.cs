@@ -48,35 +48,6 @@ namespace jeu_de_role_simple
         }
 
 
-
-        public virtual void AfficherEquipment()
-        {
-            
-            int count = 28;
-            for (int i = 0; i < count; i++)
-                Console.Write("*");
-
-            Console.WriteLine();
-
-            for (int i = 0; i < (count / 4); i++)
-            {
-                if (i == 0)
-                {
-                    Console.WriteLine("* VOICI TES ARMES :        *");
-                }
-                Console.WriteLine($"*                          *");
-                if (i == 2)
-                {
-                    Console.WriteLine($"*{this.Nom}:  {this.Equipment}     ");
-                    Console.WriteLine($"*{this.Nom}:  {this.Nom}     ");
-                    Console.WriteLine($"*{this.Nom}:  {this.Nom}      ");
-                    Console.WriteLine($"*{this.Nom}: {this.Nom}      ");
-                }
-            }
-            for (int i = 0; i < count; i++)
-                Console.Write("*");
-        }
-
         
 
 
