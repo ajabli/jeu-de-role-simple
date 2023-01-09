@@ -75,13 +75,13 @@ namespace jeu_de_role_simple
             // de commencer
             int choix=0;
             int compteur = 9;
-
             while (true & choix!=2)
             {
-                Console.WriteLine($"___________________Combat numero {9-compteur+1}____________________");
+                Console.WriteLine($"___________________ Combat numero {9-compteur+1} ____________________");
                 modele.ScenarioInfo(compteur);
                 Monstre mon = ChargementMonstre();// chargement du Monstre par fonction aléa
                 Presenter(hero, mon);
+                Console.WriteLine("Rajouter ici le terrain !!!!! ");
                 // TO DO : presenter terrain initial: hero rencontre Monstre en visu avec emplacement
                 Combat a = new Combat(hero, mon);
                 a.Encours = true;
@@ -96,7 +96,7 @@ namespace jeu_de_role_simple
                         Console.ReadKey();
                         a.Attaquer();// Hero attaque monstre 
                         modele.EcrireRalenti("L'attaque est lancée , j'espère que cela terrasera le monstre... ");
-                        //afficher terrain apres attaque1
+                     
                         if ((a.Encours = a.VerifierPerdant()) == false)
                             break;// verifie qui gagne la partie
                         modele.EcrireRalenti("Regardons maintenant les degats de l'attaque (ENTER pour continuer.. ");
@@ -104,16 +104,16 @@ namespace jeu_de_role_simple
                         Console.ReadKey();
                         Console.WriteLine();
                         Console.Clear();
+                        Console.WriteLine("Réafficher ici le terrain avec situation à jour ");
+
                         Console.ForegroundColor = ConsoleColor.DarkRed;
-                        modele.EcrireRalenti(" Le Monstre t'attaque maintenant !!!!!!!!!!");
+                        //modele.EcrireRalenti(" Le Monstre t'attaque maintenant !!!!!!!!!!");
                         Console.ForegroundColor = ConsoleColor.White;
                         a.MonstreAttaquer(); // Monstre attaque
                         a.InfoCombat();
                         Console.ReadKey();                        
                     }
                     Console.ReadKey();
-                    // TO do recuperer les infos stats du combat X (gagné perdu) + recuperer l'arme
-                    //si hero, on continue la partie, (+ point du Monstre que je cumule ) + recuper les armes + affichage de la liste 
                     Console.WriteLine();
                     choix = a.ConfirmerJeu();
                     Console.Clear();
@@ -143,10 +143,11 @@ namespace jeu_de_role_simple
                         {
                             Console.WriteLine(arme);
                         }
+                        //prevoir menu choix changement arme
                         hero.Equipment = mon.Equipment;
                         //hero.ChangerEquipment();
-                        jeu = false;                        
-                        //Console.WriteLine("combat suivant..... ");
+                        jeu = false;            
+                        
                         ////modele.EcrireRalenti(" Maintenant prépare toi pour le prochain combat!!!!!!");
                     }
                     compteur--;

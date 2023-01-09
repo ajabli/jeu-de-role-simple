@@ -22,17 +22,17 @@ namespace jeu_de_role_simple
             this.Encours = true;           
         }
 
-        public virtual void Attaquer()
+        public void Attaquer()
         {  // si c'est le Héro qui attaque le Monstre
             this.Monstre.PointDeVie -= this.Personnage.PointAttaque;
          }
 
-        public virtual void MonstreAttaquer()
+        public void MonstreAttaquer()
         {
             this.Personnage.PointDeVie -= this.Monstre.PointAttaque;
         }
 
-        public virtual void InfoCombat()
+        public void InfoCombat()
         {
             Console.WriteLine($"Vies du {this.Personnage.Nom} : {this.Personnage.PointDeVie}");
             Console.WriteLine(" Vie du Monstre :"+this.Monstre.PointDeVie);
@@ -42,7 +42,7 @@ namespace jeu_de_role_simple
             }
         }
 
-        public virtual bool VerifierPerdant()
+        public  bool VerifierPerdant()
         {
             bool condition = false;
             if((this.Personnage.PointDeVie > this.Monstre.PointDeVie)&&(this.Monstre.PointDeVie <= 0))
@@ -63,7 +63,7 @@ namespace jeu_de_role_simple
 
 
 
-        public virtual int ConfirmerJeu()
+        public int ConfirmerJeu()
         {
             
             // If gère qquand le Hero Perd : 2 choix soit recommencer ou quitter Jeu

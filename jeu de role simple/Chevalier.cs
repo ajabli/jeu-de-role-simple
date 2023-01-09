@@ -23,7 +23,6 @@ namespace jeu_de_role_simple
         {
             //Console.WriteLine("classe :" + classe);
             base.Afficher();
-
         }
 
 
