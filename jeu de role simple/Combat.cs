@@ -42,7 +42,7 @@ namespace jeu_de_role_simple
             }
         }
 
-        public virtual bool VerifierGagnant()
+        public virtual bool VerifierPerdant()
         {
             bool condition = false;
             if((this.Personnage.PointDeVie > this.Monstre.PointDeVie)&&(this.Monstre.PointDeVie <= 0))
@@ -57,14 +57,16 @@ namespace jeu_de_role_simple
             }
             condition= true;
             return condition;            
-        }
 
+        }
 
 
 
 
         public virtual int ConfirmerJeu()
         {
+            
+            // If gère qquand le Hero Perd : 2 choix soit recommencer ou quitter Jeu
             if ((this.Monstre.PointDeVie > this.Personnage.PointDeVie) && (this.Personnage.PointDeVie <= 0))
             {
                 Console.WriteLine($" -- GAME OVER-- ");
@@ -95,7 +97,12 @@ namespace jeu_de_role_simple
                     }
                 }
             }
-            return 0;
-        }//fin de la fonction
+            // if gère lorsque le Hero Gagne : affichage des armes-> voir fonction menu en programme
+            if((this.Personnage.PointDeVie > this.Monstre.PointDeVie) && (this.Monstre.PointDeVie <= 0))
+            {
+                return 3;
+            }
+         return 0;
+        }
     }
 }

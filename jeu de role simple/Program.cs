@@ -23,7 +23,7 @@ namespace jeu_de_role_simple
         }
 
 
-
+        
         public static Monstre ChargementMonstre()
         {
             Random ran = new Random();
@@ -64,41 +64,44 @@ namespace jeu_de_role_simple
 
         private static void Main(string[] args)
         {
-            Console.WriteLine("********BIENVENUE AU JEU DE ROLE **********");
+            Console.WriteLine("******** BIENVENUE AU JEU DE ROLE **********");
             Console.WriteLine();
             // Chargement des Heros et du Monstre + creation et chargement arme initiale Hero 
             List<string> listHero = new List<string>();
             Modele modele = new Modele();
             Personnage hero = modele.SelectionPersonnage();// selection de ton héro 
             listHero.Add(hero.Equipment);
-
-            // Creer une fonction qui explique le combat et donne les infos principales avant 
+             // Creer une fonction qui explique le combat et donne les infos principales avant 
             // de commencer
-            int choix=0;    
+            int choix=0;
+            int compteur = 9;
+
             while (true & choix!=2)
             {
-                int compteur = 9;
                 Console.WriteLine($"___________________Combat numero {9-compteur+1}____________________");
+                modele.ScenarioInfo(compteur);
                 Monstre mon = ChargementMonstre();// chargement du Monstre par fonction aléa
                 Presenter(hero, mon);
                 // TO DO : presenter terrain initial: hero rencontre Monstre en visu avec emplacement
-                Console.WriteLine(mon.Nom);
                 Combat a = new Combat(hero, mon);
                 a.Encours = true;
-                while (compteur > 0)
+                bool jeu = true;
+                while (compteur > 0 && compteur<=9 && jeu==true)
                 {
                     while (a.Encours == true)
                     {
-                        if ((a.Encours = a.VerifierGagnant()) == false)
+                        if ((a.Encours = a.VerifierPerdant()) == false)
                             break;// verifie qui gagne la partie après attaque du Monstre
                         Console.WriteLine(" Appuie sur n'importe quelle touche pour attaquer l'ennemi!!");
                         Console.ReadKey();
                         a.Attaquer();// Hero attaque monstre 
                         modele.EcrireRalenti("L'attaque est lancée , j'espère que cela terrasera le monstre... ");
                         //afficher terrain apres attaque1
-                        if ((a.Encours = a.VerifierGagnant()) == false)
+                        if ((a.Encours = a.VerifierPerdant()) == false)
                             break;// verifie qui gagne la partie
+                        modele.EcrireRalenti("Regardons maintenant les degats de l'attaque (ENTER pour continuer.. ");
                         a.InfoCombat();
+                        Console.ReadKey();
                         Console.WriteLine();
                         Console.Clear();
                         Console.ForegroundColor = ConsoleColor.DarkRed;
@@ -106,32 +109,55 @@ namespace jeu_de_role_simple
                         Console.ForegroundColor = ConsoleColor.White;
                         a.MonstreAttaquer(); // Monstre attaque
                         a.InfoCombat();
-                        modele.EcrireRalenti(" Appuie sur n'importe quelle touche pour continuer COMBAT");
-                        Console.ReadKey();
-                        Console.Clear();
+                        Console.ReadKey();                        
                     }
                     Console.ReadKey();
                     // TO do recuperer les infos stats du combat X (gagné perdu) + recuperer l'arme
-                    // si le monstre gaggne; la partie est finie-> voulez vous rejpuer ou quitter le jeu
                     //si hero, on continue la partie, (+ point du Monstre que je cumule ) + recuper les armes + affichage de la liste 
-                    compteur--;
                     Console.WriteLine();
                     choix = a.ConfirmerJeu();
+                    Console.Clear();
                     if (choix == 1)
                     {
                         a.Encours = true;
-                        compteur = -1; // je reviens vers la 1ere boucle while pour rejouer 
-                        hero = modele.SelectionPersonnage();// initialisation info Hero et choix nouvel hero
+                        compteur = 9; // je reviens vers la 1ere boucle while pour rejouer 
+                        hero = modele.SelectionPersonnage();// initialisation Hero et choix nouvel hero
+                        jeu = false;
                         Console.Clear();
                     }
                     else if (choix == 2)
                     {
-                        a.Encours = true;
                         break;// on quitte le jeu
                     }
-                   
+                    else if (choix == 3)
+                    {
+                        ////info armes
+                        Console.WriteLine($" Bravo tu as gagné le combat numero {9-compteur+1} avec  ton {hero.Equipment} ");
+                        Console.WriteLine($"Tu as tué {mon.Nom} ! ");
+                        Console.WriteLine($"Tu as aussi récupéré  l'arme  de {mon.Nom} ! ");
+                        Console.WriteLine(mon.Equipment);
+                        listHero.Add(mon.Equipment);
+
+                        Console.WriteLine("aperçu equipement : ");
+                        foreach(string arme in listHero)
+                        {
+                            Console.WriteLine(arme);
+                        }
+                        hero.Equipment = mon.Equipment;
+                        //hero.ChangerEquipment();
+                        jeu = false;                        
+                        //Console.WriteLine("combat suivant..... ");
+                        ////modele.EcrireRalenti(" Maintenant prépare toi pour le prochain combat!!!!!!");
+                    }
+                    compteur--;
+
+
+
+
+
+
                 }
-                
+
             }
         }
     }

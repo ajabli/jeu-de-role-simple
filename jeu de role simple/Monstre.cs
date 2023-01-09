@@ -14,7 +14,7 @@ namespace jeu_de_role_simple
         {
             Nom = nom;
             PointDeVie = 80;
-            PointAttaque = 7;
+            PointAttaque = 8;
             PointDefense = 8;
             Initiative = 15;
             Equipment = "Marteau";

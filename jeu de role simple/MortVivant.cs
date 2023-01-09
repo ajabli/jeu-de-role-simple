@@ -11,7 +11,7 @@ namespace jeu_de_role_simple
         public MortVivant(string nom) : base(nom)
         {
             this.Nom = nom;
-            PointDeVie = 100;
+            PointDeVie = 80;
             PointAttaque = 5;
             PointDefense = 1;
             Initiative = 15;

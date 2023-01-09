@@ -48,13 +48,67 @@ namespace jeu_de_role_simple
             }
         }
 
-    public void EcrireRalenti(string phrase)
+
+
+        public void ScenarioInfo(int compteur)
+        {
+            switch (compteur)
+            {
+                case 9:
+                    Console.ForegroundColor = ConsoleColor.Green;
+                    Console.WriteLine();
+                    Console.WriteLine("     Le combat aura lieu dans la foret     ");
+                    break;
+                case 8:
+                    Console.ForegroundColor = ConsoleColor.Blue;
+                    Console.WriteLine();
+                    Console.WriteLine("     Le combat aura lieu en face de la mer     ");
+                    break;
+                case 7:
+                    Console.ForegroundColor = ConsoleColor.Gray;
+                    Console.WriteLine("     Le combat aura lieu au Bord du Lac ");
+                    break;
+                case 6:
+                    Console.ForegroundColor = ConsoleColor.DarkYellow;
+                    Console.WriteLine();
+                    Console.WriteLine("Le combat aura lieu dans le desert ");
+                    break;
+                case 5:
+                    Console.WriteLine();
+                    Console.WriteLine("Le combat aura lieu sur la montagne");
+                    break;
+                case 4:
+                    Console.ForegroundColor = ConsoleColor.DarkYellow;
+                    Console.WriteLine();
+                    Console.WriteLine("Le combat aura lieu sur la plaine");
+                    break;
+                case 3:
+                    Console.ForegroundColor = ConsoleColor.DarkYellow;
+                    Console.WriteLine();
+                    Console.WriteLine("Le combat aura lieu en ville");
+                    break;
+                case 2:
+                    Console.WriteLine();
+                    Console.WriteLine("Le combat aura lieu dans la jungle");
+                    break;
+                    
+                case 1:
+                    Console.WriteLine();
+                    Console.WriteLine("Le combat aura lieu sur une ile");
+                    break;
+
+            }
+
+            Console.WriteLine();
+        }
+
+        public void EcrireRalenti(string phrase)
      {
             
             foreach (var character in phrase)
             {
                 Console.Write(character);
-                Thread.Sleep(60);
+                Thread.Sleep(40);
             }
             Console.WriteLine();
             Console.ReadLine();

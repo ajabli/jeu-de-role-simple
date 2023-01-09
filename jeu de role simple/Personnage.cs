@@ -29,10 +29,9 @@ namespace jeu_de_role_simple
             this.MonEquipment.Add(this.Equipment);
         }
 
-        public  void AjoutEquipment(List<string>MonEquipment, string arme)
+        public  void AjoutEquipment(string arme)
         {
-            
-            MonEquipment.Add(arme);
+            MonEquipment.Add(arme);      
         }
      
 
@@ -41,15 +40,12 @@ namespace jeu_de_role_simple
                        Console.WriteLine("Quelle Arme souhaitez vous recuperer pour le prochain combat");
             for(int i=0; i<this.MonEquipment.Count(); i++)
             {
-                Console.WriteLine($"{i} : {this.MonEquipment[i]}");
+                Console.WriteLine($"{i+1} : {this.MonEquipment[i]}");
             }
             int choix = int.Parse(Console.ReadLine());
             Console.WriteLine("Votre choix ", MonEquipment[choix-1]);
         }
-
-
-        
-
+               
 
         public virtual void Afficher()
         {
@@ -60,7 +56,6 @@ namespace jeu_de_role_simple
             Console.WriteLine();
         }
 
-       
-
+      
     }
 }
