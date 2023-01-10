@@ -62,7 +62,6 @@ namespace jeu_de_role_simple
 
 
 
-
         public int ConfirmerJeu()
         {
             
@@ -104,5 +103,19 @@ namespace jeu_de_role_simple
             }
          return 0;
         }
+
+
+        public void ProposerArmes(List<string> ListHero)
+        {
+            Console.WriteLine("aperçu equipement : ");
+            foreach (string arme in ListHero)
+            {
+                Console.WriteLine(arme);
+            }
+            //prevoir menu choix changement arme
+            this.Personnage.Equipment=this.Monstre.Equipment;
+
+        }
+
     }
 }

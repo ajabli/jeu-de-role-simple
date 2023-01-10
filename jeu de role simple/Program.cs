@@ -64,21 +64,21 @@ namespace jeu_de_role_simple
 
         private static void Main(string[] args)
         {
-            Menu monMenu = new Menu();
-            monMenu.DebutJeux();
-            Console.Clear();
+            Console.WriteLine("******** BIENVENUE AU JEU DE ROLE **********");
+            Console.WriteLine();
+            //test ahmed
             // Chargement des Heros et du Monstre + creation et chargement arme initiale Hero 
-            List<string> listHero = new List<string>();
+            List<string> listHero = new List<string>();// chargement liste Hero
             Modele modele = new Modele();
             Personnage hero = modele.SelectionPersonnage();// selection de ton héro 
             listHero.Add(hero.Equipment);
              // Creer une fonction qui explique le combat et donne les infos principales avant 
             // de commencer
             int choix=0;
-            int compteur = 1;
+            int compteur = 9;
             while (true & choix!=2)
-            {   
-                Console.WriteLine($"___________________ Combat numero {compteur} ____________________");
+            {
+                Console.WriteLine($"___________________ Combat numero {9-compteur+1} ____________________");
                 modele.ScenarioInfo(compteur);
                 Monstre mon = ChargementMonstre();// chargement du Monstre par fonction aléa
                 Presenter(hero, mon);
@@ -87,37 +87,7 @@ namespace jeu_de_role_simple
                 Combat a = new Combat(hero, mon);
                 a.Encours = true;
                 bool jeu = true;
-                if (compteur == 1)
-                {   Console.WriteLine(" bravo tu as gagné veux tu rejouer ? ");
-                    Console.WriteLine(" 1 pour rejouer et 2 pour quitter");
-                    
-                    while (true)
-                    {
-                        try
-                        {int rejouer = int.Parse(Console.ReadLine());
-                             if (rejouer == 1)
-                                {
-                                    hero = modele.SelectionPersonnage();
-                                    listHero.Add(hero.Equipment);
-                                    choix = 0;
-                                    compteur = 9;
-                                break;
-                                }
-                            else if (rejouer == 2)
-                                {
-                                    Console.WriteLine("Au revoir.");
-                                    Environment.Exit(0);
-                                }
-                        }catch
-                        {
-                            Console.WriteLine(" Veuillez choisir soit (1) ou (2)");
-                        }
-                    }
-                    
-                   
-
-                }
-                while (compteur < 10 && jeu==true)
+                while (compteur > 0 && compteur<=9 && jeu==true)
                 {
                     while (a.Encours == true)
                     {
@@ -126,7 +96,7 @@ namespace jeu_de_role_simple
                         Console.WriteLine(" Appuie sur n'importe quelle touche pour attaquer l'ennemi!!");
                         Console.ReadKey();
                         a.Attaquer();// Hero attaque monstre 
-                        modele.EcrireRalenti("L'attaque est lancée , j'espère que cela terrasera le monstre... ");
+                        //modele.EcrireRalenti("L'attaque est lancée , j'espère que cela terrasera le monstre... ");
                      
                         if ((a.Encours = a.VerifierPerdant()) == false)
                             break;// verifie qui gagne la partie
@@ -142,8 +112,7 @@ namespace jeu_de_role_simple
                         Console.ForegroundColor = ConsoleColor.White;
                         a.MonstreAttaquer(); // Monstre attaque
                         a.InfoCombat();
-                        Console.ReadKey();   
-                        
+                        Console.ReadKey();                        
                     }
                     Console.ReadKey();
                     Console.WriteLine();
@@ -152,7 +121,7 @@ namespace jeu_de_role_simple
                     if (choix == 1)
                     {
                         a.Encours = true;
-                        compteur = 0; // je reviens vers la 1ere boucle while pour rejouer 
+                        compteur = 9; // je reviens vers la 1ere boucle while pour rejouer 
                         hero = modele.SelectionPersonnage();// initialisation Hero et choix nouvel hero
                         jeu = false;
                         Console.Clear();
@@ -161,30 +130,25 @@ namespace jeu_de_role_simple
                     {
                         break;// on quitte le jeu
                     }
-                    else if (choix == 3)
+                    else if (choix == 3)// on reste dans la boucle principale pour continuer de jouer
                     {
                         ////info armes
                         Console.WriteLine($" Bravo tu as gagné le combat numero {9-compteur+1} avec  ton {hero.Equipment} ");
                         Console.WriteLine($"Tu as tué {mon.Nom} ! ");
                         Console.WriteLine($"Tu as aussi récupéré  l'arme  de {mon.Nom} ! ");
                         Console.WriteLine(mon.Equipment);
-                        listHero.Add(mon.Equipment);
-
-                        Console.WriteLine("aperçu equipement : ");
-                        foreach(string arme in listHero)
-                        {
-                            Console.WriteLine(arme);
-                        }
-                        //prevoir menu choix changement arme
-                        hero.Equipment = mon.Equipment;
-                        //hero.ChangerEquipment();
+                        listHero.Add(mon.Equipment);// je rajoute l'arme du monstre vaincu dans ma liste
+                        a.ProposerArmes(listHero);
                         jeu = false;            
-                        
-                        ////modele.EcrireRalenti(" Maintenant prépare toi pour le prochain combat!!!!!!");
+                        modele.EcrireRalenti(" Maintenant prépare toi pour le prochain combat!!!!!!");
                     }
-                    
-                    compteur++;
- 
+                    compteur--;
+
+
+
+
+
+
                 }
 
             }
