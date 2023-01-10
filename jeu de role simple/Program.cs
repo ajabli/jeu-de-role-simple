@@ -64,8 +64,9 @@ namespace jeu_de_role_simple
 
         private static void Main(string[] args)
         {
-            Console.WriteLine("******** BIENVENUE AU JEU DE ROLE **********");
-            Console.WriteLine();
+            Menu monMenu = new Menu();
+            monMenu.DebutJeux();
+            Console.Clear();
             // Chargement des Heros et du Monstre + creation et chargement arme initiale Hero 
             List<string> listHero = new List<string>();
             Modele modele = new Modele();
@@ -74,10 +75,10 @@ namespace jeu_de_role_simple
              // Creer une fonction qui explique le combat et donne les infos principales avant 
             // de commencer
             int choix=0;
-            int compteur = 9;
+            int compteur = 1;
             while (true & choix!=2)
-            {
-                Console.WriteLine($"___________________ Combat numero {9-compteur+1} ____________________");
+            {   
+                Console.WriteLine($"___________________ Combat numero {compteur} ____________________");
                 modele.ScenarioInfo(compteur);
                 Monstre mon = ChargementMonstre();// chargement du Monstre par fonction aléa
                 Presenter(hero, mon);
@@ -86,7 +87,37 @@ namespace jeu_de_role_simple
                 Combat a = new Combat(hero, mon);
                 a.Encours = true;
                 bool jeu = true;
-                while (compteur > 0 && compteur<=9 && jeu==true)
+                if (compteur == 1)
+                {   Console.WriteLine(" bravo tu as gagné veux tu rejouer ? ");
+                    Console.WriteLine(" 1 pour rejouer et 2 pour quitter");
+                    
+                    while (true)
+                    {
+                        try
+                        {int rejouer = int.Parse(Console.ReadLine());
+                             if (rejouer == 1)
+                                {
+                                    hero = modele.SelectionPersonnage();
+                                    listHero.Add(hero.Equipment);
+                                    choix = 0;
+                                    compteur = 9;
+                                break;
+                                }
+                            else if (rejouer == 2)
+                                {
+                                    Console.WriteLine("Au revoir.");
+                                    Environment.Exit(0);
+                                }
+                        }catch
+                        {
+                            Console.WriteLine(" Veuillez choisir soit (1) ou (2)");
+                        }
+                    }
+                    
+                   
+
+                }
+                while (compteur < 10 && jeu==true)
                 {
                     while (a.Encours == true)
                     {
@@ -111,7 +142,8 @@ namespace jeu_de_role_simple
                         Console.ForegroundColor = ConsoleColor.White;
                         a.MonstreAttaquer(); // Monstre attaque
                         a.InfoCombat();
-                        Console.ReadKey();                        
+                        Console.ReadKey();   
+                        
                     }
                     Console.ReadKey();
                     Console.WriteLine();
@@ -120,7 +152,7 @@ namespace jeu_de_role_simple
                     if (choix == 1)
                     {
                         a.Encours = true;
-                        compteur = 9; // je reviens vers la 1ere boucle while pour rejouer 
+                        compteur = 0; // je reviens vers la 1ere boucle while pour rejouer 
                         hero = modele.SelectionPersonnage();// initialisation Hero et choix nouvel hero
                         jeu = false;
                         Console.Clear();
@@ -150,13 +182,9 @@ namespace jeu_de_role_simple
                         
                         ////modele.EcrireRalenti(" Maintenant prépare toi pour le prochain combat!!!!!!");
                     }
-                    compteur--;
-
-
-
-
-
-
+                    
+                    compteur++;
+ 
                 }
 
             }

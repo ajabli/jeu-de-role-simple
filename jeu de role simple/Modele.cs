@@ -108,7 +108,7 @@ namespace jeu_de_role_simple
             foreach (var character in phrase)
             {
                 Console.Write(character);
-                Thread.Sleep(40);
+                Thread.Sleep(0);
             }
             Console.WriteLine();
             Console.ReadLine();
