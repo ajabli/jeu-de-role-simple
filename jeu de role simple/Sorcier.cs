@@ -11,7 +11,7 @@ namespace jeu_de_role_simple
         public Sorcier(string nom) : base(nom)
         {
             this.Nom = nom;
-            PointDeVie = 45;
+            PointDeVie = 70;
             PointAttaque = 10;
             PointDefense = 3;
             Initiative = 15;
