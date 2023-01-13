@@ -16,12 +16,12 @@ namespace jeu_de_role_simple
             PointAttaque = 7;
             PointDefense = 8;
             Initiative = 15;
-            Equipment = "epee";// ajouter equipement dans la fonction 
+            Equipment = "epee";
             
         }
         public override void Afficher()
         {
-            //Console.WriteLine("classe :" + classe);
+            
             base.Afficher();
         }
 

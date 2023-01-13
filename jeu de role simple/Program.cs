@@ -67,11 +67,11 @@ namespace jeu_de_role_simple
 
         private static void Main(string[] args)
         {
-            Menu monMenu = new Menu();
-            monMenu.DebutJeux();
-            Console.Clear();
+            Console.WriteLine("******** BIENVENUE AU JEU DE ROLE **********");
+            Console.WriteLine();
+            //test ahmed
             // Chargement des Heros et du Monstre + creation et chargement arme initiale Hero 
-            List<string> listHero = new List<string>();
+            List<string> listHero = new List<string>();// chargement liste Hero
             Modele modele = new Modele();
             Personnage hero = modele.SelectionPersonnage();// selection de ton héro 
             listHero.Add(hero.Equipment);
@@ -118,8 +118,6 @@ namespace jeu_de_role_simple
                 modele.ScenarioInfo(compteur);
                 Monstre mon = ChargementMonstre();// chargement du Monstre par fonction aléa
                 Presenter(hero, mon);
-                //Console.WriteLine("Rajouter ici le terrain !!!!! ");
-                // TO DO : presenter terrain initial: hero rencontre Monstre en visu avec emplacement
                 Combat a = new Combat(hero, mon);
                 a.Encours = true;
                 bool jeu = true;
@@ -133,7 +131,7 @@ namespace jeu_de_role_simple
                         Console.WriteLine("Appuie sur n'importe quelle touche pour attaquer l'ennemi!!");
                         Console.ReadKey();
                         a.Attaquer();// Hero attaque monstre 
-                        modele.EcrireRalenti("L'attaque est lancée , j'espère que cela terrasera le monstre... ");
+                        //modele.EcrireRalenti("L'attaque est lancée , j'espère que cela terrasera le monstre... ");
                      
                         if ((a.Encours = a.VerifierPerdant()) == false)
                             break;// verifie qui gagne la partie
@@ -149,8 +147,7 @@ namespace jeu_de_role_simple
                         Console.ForegroundColor = ConsoleColor.White;
                         a.MonstreAttaquer(); // Monstre attaque
                         a.InfoCombat();
-                        Console.ReadKey();   
-                        
+                        Console.ReadKey();                        
                     }
 
                     Console.ReadKey();
@@ -160,7 +157,7 @@ namespace jeu_de_role_simple
                     if (choix == 1)
                     {
                         a.Encours = true;
-                        compteur = 0; // je reviens vers la 1ere boucle while pour rejouer 
+                        compteur = 9; // je reviens vers la 1ere boucle while pour rejouer 
                         hero = modele.SelectionPersonnage();// initialisation Hero et choix nouvel hero
                         jeu = false;
                         Console.Clear();
@@ -169,26 +166,17 @@ namespace jeu_de_role_simple
                     {
                         break;// on quitte le jeu
                     }
-                    else if (choix == 3)
+                    else if (choix == 3)// on reste dans la boucle principale pour continuer de jouer
                     {
                         ////info armes
                         Console.WriteLine($" Bravo tu as gagné le combat numero {compteur+1} avec  ton {hero.Equipment} ");
                         Console.WriteLine($"Tu as tué {mon.Nom} ! ");
                         Console.WriteLine($"Tu as aussi récupéré  l'arme  de {mon.Nom} ! ");
                         Console.WriteLine(mon.Equipment);
-                        listHero.Add(mon.Equipment);
-
-                        Console.WriteLine("aperçu equipement : ");
-                        foreach(string arme in listHero)
-                        {
-                            Console.WriteLine(arme);
-                        }
-                        //prevoir menu choix changement arme
-                        hero.Equipment = mon.Equipment;
-                        //hero.ChangerEquipment();
+                        listHero.Add(mon.Equipment);// je rajoute l'arme du monstre vaincu dans ma liste
+                        a.ProposerArmes(listHero);
                         jeu = false;            
-                        
-                        ////modele.EcrireRalenti(" Maintenant prépare toi pour le prochain combat!!!!!!");
+                        modele.EcrireRalenti(" Maintenant prépare toi pour le prochain combat!!!!!!");
                     }
 
                     Random rand = new Random();
