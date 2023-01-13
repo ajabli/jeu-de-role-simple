@@ -13,9 +13,10 @@ namespace jeu_de_role_simple
         public Monstre(string nom) : base(nom)
         {
             Nom = nom;
-            PointDeVie = 80;
-            PointAttaque = 8;
-            PointDefense = 8;
+            var random = new Random();
+            PointDeVie = random.Next(40, 91);
+            PointAttaque = random.Next(4, 11);
+            PointDefense = random.Next(4, 11);
             Initiative = 15;
             Equipment = "Marteau";
 

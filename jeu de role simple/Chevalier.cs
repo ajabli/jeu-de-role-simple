@@ -12,7 +12,7 @@ namespace jeu_de_role_simple
         public Chevalier(string nom) : base(nom)
         {
             this.Nom = nom;
-            PointDeVie = 1000;
+            PointDeVie = 100;
             PointAttaque = 7;
             PointDefense = 8;
             Initiative = 15;

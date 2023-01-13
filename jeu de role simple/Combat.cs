@@ -34,8 +34,8 @@ namespace jeu_de_role_simple
 
         public void InfoCombat()
         {
-            Console.WriteLine($"Vies du {this.Personnage.Nom} : {this.Personnage.PointDeVie}");
-            Console.WriteLine(" Vie du Monstre :"+this.Monstre.PointDeVie);
+            Console.WriteLine($"Point de vie de {this.Personnage.Nom} : {this.Personnage.PointDeVie}");
+            Console.WriteLine($"Point de vie de {this.Monstre.Nom} : { this.Monstre.PointDeVie}" );
             if (this.Monstre.PointAttaque > this.Personnage.PointAttaque)
             {
                 Console.WriteLine($" Aie il semble que  {this.Monstre.Nom} a des attaques plus fortes que toi ");
